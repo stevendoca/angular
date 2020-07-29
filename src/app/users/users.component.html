@@ -1,0 +1,56 @@
+<div class="container">
+	<div class="text-center p-4">
+		<h1 class="text-danger"><strong>Account Registration</strong></h1>
+	</div>
+	<div class="card w-50 border border-light mx-auto">
+		<div class="card-header text-center py-2 bg-danger text-white">
+			<h3><strong>Sign up</strong></h3>
+		</div>
+		<div class="card-body">
+			<form>
+				<div class="form-group w-75 mx-auto">
+					<label for="userNameInput">User Name</label>
+					<input type="text" [formControl]="username" class="form-control" id="userNameInput" aria-describedby="userHelp" placeholder="Enter name">
+					<small id="userHelp" class="form-text text-muted">User name must be unique.</small>
+				</div>
+				<ng-template [ngIf]= noUserName>
+					<div>
+						<p class="text-danger">Must provide user name</p>
+					</div>
+				</ng-template>
+				<div class="form-group w-75 mx-auto">
+					<label for="passwordInput">Password</label>
+					<input type="password" [formControl]="password" class="form-control" id="passwordInput" aria-describedby="passwordHelp" placeholder="Enter at least 6 characters">
+					<small id="passwordHelp" class="form-text text-muted">Do not use simple password that can be guested.</small>
+				</div>
+				<ng-template [ngIf]= noPassword>
+					<div>
+						<p class="text-danger">Must provide password</p>
+					</div>
+				</ng-template>
+				<div class="form-group w-75 mx-auto">
+					<label for="confirmPasswordInput">Confirm Password</label>
+					<input type="password" [formControl]="confirmPassword" class="form-control" id="confirmPasswordInput" placeholder="Please enter again your password">
+				</div>
+				<ng-template [ngIf]= noConfirmPassword>
+					<div>
+						<p class="text-danger">Must provide confirm password</p>
+					</div>
+				</ng-template>
+				<button type="submit" class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0 " (click)="createUser()">Create a new user</button>
+			</form>
+			<ng-template [ngIf]= passwordNotMatch>
+				<div>
+					<p class="text-danger">Password is not match, please enter again passord</p>
+				</div>
+			</ng-template>
+			<ng-template [ngIf]= success>
+				<div class="text-center bg-success">
+					<p>{{msg | async}}</p>
+				</div>
+			</ng-template>
+			
+		</div>
+	</div>
+
+</div>

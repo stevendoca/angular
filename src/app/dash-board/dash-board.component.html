@@ -1,0 +1,27 @@
+
+<div class="container">
+    <div class="row">
+        <h5 (click)="changeShowList()">Show lists</h5>
+        <button type="button" (click)="changeShowList()">Show lists</button>
+        <button (click)="changeShowList()">Click me!</button>
+        <div class="col-12" >
+            <table class= "table table-striped" *ngIf="showList">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Accout</th>
+                        <th>Debit</th>
+                        <th>Credit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="transaction" *ngFor="let tr of transactionList | async " app-transaction [transaction]="tr">
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="container" >
+    <div class="text-center p-4">
+        <h4>Welcome to</h4>
+        <h1><strong>StevenBank</strong></h1>
+    </div>
+        
+    <div class="card  border border-light w-50 mx-auto" >
+        <h4 class="card-header  text-center py-4 bg-danger text-white">
+           <strong>Sign In</strong> 
+        </h4>
+        <div class="card-body px-lg-5 justify-content-center" >
+            <form>
+                <div class="md-form w-75 p-2 justify-content-center" >
+                    <label for="userNameInput">User Name</label>
+                    <input type="text" [formControl]="username" class="form-control" id="userNameInput" aria-describedby="userHelp" placeholder="Enter name">
+                </div>
+        
+                <div class="md-form w-75 p-2 justify-content-center">
+                    <label for="passwordInput">Password</label>
+                    <input type="password" [formControl]="password" class="form-control" id="passwordInput" aria-describedby="passwordHelp" placeholder="Enter at least 6 characters">
+                </div>
+                <button type="submit" class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0 " (click)="login()">Log in</button>
+                <p>Not a member ? <a href="/create-user">Register</a></p>
+            </form>
+        <p>Response: {{ msg | async }}</p>
+        </div>
+    </div>   
+</div>
