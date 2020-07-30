@@ -1,9 +1,17 @@
 
 <div class="container">
+    <google-chart #chart
+        [type]="type"
+        [data]="data | async"
+        [options]="options">
+     </google-chart>
+     <!-- <p>hi{{database}}</p>
+     <p>hello{{debit}}</p> -->
     <div class="row">
         <h5 (click)="changeShowList()">Show lists</h5>
         <button type="button" (click)="changeShowList()">Show lists</button>
         <button (click)="changeShowList()">Click me!</button>
+        
         <div class="col-12" >
             <table class= "table table-striped" *ngIf="showList">
                 <thead>

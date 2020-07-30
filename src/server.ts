@@ -67,7 +67,6 @@ app.get('/create-user', async (req, res) => {
 				}
 			});
 		} catch (e) {
-			console.log(e);
 			res.send({ status: 'fail', reason: e });
 		}
 	} else {
@@ -80,13 +79,11 @@ app.get('/authenticate', async (req, res) => {
 	User.findOne({ username: (req.query as any).username }, async (err, obj) => {
 		if (err || !obj) {
 			res.send({ status: 'fail', reason: 'no such user' });
-			console.log('no such user');
 		} else if (await argon2.verify(obj.passwordHash, (req.query as any).password)) {
 			const token = await jwt.sign({ user: obj.username }, jwtSecret);
 			res.send({ status: 'OK', token: token });
 		} else {
 			res.send({ status: 'fail', reason: 'bad password' });
-			console.log('bad password');
 		}
 	});
 });
@@ -115,14 +112,12 @@ app.get('/add-transaction', async (req, res) => {
 		})
 		newTransaction.save((err, obj) => {
 			if (err) {
-				console.log(err)
 				res.send({ status: 'fail in saving', reason: err });
 			} else {
 				res.send({ status: 'OK' });
 			}
 		});
 	} catch (e) {
-		console.log(e)
 		res.send({ status: 'fail in serve' });
 	}
 });
@@ -130,13 +125,16 @@ app.get('/add-transaction', async (req, res) => {
 app.get('/get-transactions', async (req, res) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	try{
-		console.log('test')
 		const user = await jwt.verify((req.query as any).token, jwtSecret);
 		if (user){
 			const transactions = await Transaction.find({user:user.user});
-			console.log(transactions);
-			console.log(transactions[0].user)
-			return res.send({status:'OK', transactions:transactions});
+			console.log(transactions[0].credit)
+			let debit = 0;
+			for(let i = 0; i < transactions.length; i++){
+				debit+= transactions[i].credit;
+			}
+			console.log(debit)
+			return res.send({status:'OK', transactions:transactions, debit: debit});
 		}else{
 			return res.send({status:'no such user'})
 		}

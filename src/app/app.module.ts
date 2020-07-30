@@ -10,6 +10,8 @@ import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { MenuComponent } from './menu/menu.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { MenuComponent } from './menu/menu.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    GoogleChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
