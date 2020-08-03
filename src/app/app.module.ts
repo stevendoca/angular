@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { MenuComponent } from './menu/menu.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { ErrorComponent } from './error/error.component';
+import { ErrorAuthComponent } from './error-auth/error-auth.component';
+
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { GoogleChartsModule } from 'angular-google-charts';
     UsersComponent,
     LoginComponent,
     DashBoardComponent,
-    MenuComponent
+    MenuComponent,
+    ErrorComponent,
+    ErrorAuthComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    GoogleChartsModule
+    GoogleChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

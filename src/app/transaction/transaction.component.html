@@ -1,12 +1,14 @@
 <ng-container>
+
     <td>{{ transaction.date | date: 'short' }}</td>
-    <td>{{ transaction.description }}</td>
+    <td (click)="deleteTrans($event)">{{ transaction.description }}</td>
     <td>{{ transaction.account }}</td>
     <!-- <td>{{transaction.credit}}</td> -->
     <td *ngIf="transaction.credit < 0" class="debit">{{transaction.credit}}</td>
     <td *ngIf="transaction.credit < 0"></td>
     <td *ngIf="transaction.credit > 0"></td>
     <td *ngIf="transaction.credit > 0" class="credit">{{transaction.credit}}</td>
+    <button (click)="deleteTrans($event)" value= {{transaction._id}} class="glyphicon glyphicon-check">Delete</button>
     
     <!-- <td *ngIf="transaction.isDebit()" else noDebit class="debit"> {{transaction.credit *-1 | number: '1.2-2'}}</td>
     <ng-template #noDebit>

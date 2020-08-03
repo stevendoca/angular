@@ -1,24 +1,20 @@
 
 <div class="container">
-    <google-chart #chart
-        [type]="type"
-        [data]="data | async"
-        [options]="options">
-     </google-chart>
-     <!-- <p>hi{{database}}</p>
-     <p>hello{{debit}}</p> -->
-    <div class="row">
-        <h5 (click)="changeShowList()">Show lists</h5>
-        <button type="button" (click)="changeShowList()">Show lists</button>
-        <button (click)="changeShowList()">Click me!</button>
-        
+
+    <div>
+        <h5><strong>Summary</strong></h5>
+        <p>Total transactions: <strong>{{this.dash.transactions.length}}</strong></p>
+        <p>Current Balance: <strong>${{this.dash.credit}}</strong></p>
+    </div>
+    <div>
+        <h5 (click)="changeShowList()"><strong>Click to show detail</strong></h5>
         <div class="col-12" >
             <table class= "table table-striped" *ngIf="showList">
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Description</th>
-                        <th>Accout</th>
+                        <th>Account</th>
                         <th>Debit</th>
                         <th>Credit</th>
                     </tr>

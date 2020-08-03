@@ -3,6 +3,7 @@ import * as mongoose from 'mongoose';
 import * as argon2 from 'argon2';
 import * as jwt from 'jsonwebtoken';
 import { jwtSecret, restApiPort, dbName } from './config';
+import { APP_ID } from '@angular/core';
 
 const app = express();
 
@@ -140,6 +141,20 @@ app.get('/get-transactions', async (req, res) => {
 		}
 	}catch (e){
 		return res.send({status:e})
+	}
+})
+
+app.get('/delete-transaction', async (req, res) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	try{
+		const user= await Transaction.findByIdAndRemove((req.query as any).id)
+		if (!user){
+			console.log('no user')
+		}else{
+			console.log(user)
+		}
+	}catch(e){
+		console.log('error ' + e)
 	}
 })
 

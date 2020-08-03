@@ -5,16 +5,22 @@ import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { MenuComponent } from './menu/menu.component';
+import { ErrorComponent} from './error/error.component';
+import { ErrorAuthComponent } from './error-auth/error-auth.component';
 import {DashBoardComponent} from './dash-board/dash-board.component'
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'create-user', component: UsersComponent},
-  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginComponent},
   {path: 'transaction', component: TransactionComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'menu', component: MenuComponent},
-  {path: 'dashboard', component: DashBoardComponent}
+  {path: 'dashboard', component: DashBoardComponent},
+  {path: 'error', component:ErrorComponent},
+  {path: 'auth-error', component:ErrorAuthComponent},
+  {path: '**', component:ErrorComponent},
+
 ];
 
 

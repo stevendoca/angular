@@ -1,14 +1,19 @@
-<!-- <nav>
-	<ol>
-		<li><a href="/create-user">Create a new user</a></li>
-		<li><a href="/login">Log in as an existing user</a></li>
-		<li><a href="/check-login">Verify that you are (not) logged in</a></li>
-	</ol>
-</nav> -->
-<router-outlet></router-outlet>
-<nav class="navbar navbar-light bg-primary">
-    <a routerLink="/register" class="navbar-brand">Transaction</a>
-	<a routerLink="/create-user" class="navbar-brand">Create Account</a>
-	<a routerLink="/login" class="navbar-brand">Log In</a>
-</nav>
-<router-outlet></router-outlet>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	  <div class="navbar-nav">
+		<a class="nav-item nav-link active" href="home">Home <span class="sr-only">(current)</span></a>
+		<a class="nav-item nav-link" href="transaction">Add-Transaction</a>
+		<a class="nav-item nav-link" href="dashboard">Dash-Board</a>
+		<a class="nav-item nav-link" (click)="logOut()">Log Out</a>
+	  </div>
+	</div>
+	<button type="button" (click)="this.logOut()">Logout</button>
+	
+  </nav>
+  <router-outlet></router-outlet>
