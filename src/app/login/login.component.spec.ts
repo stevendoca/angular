@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent,Login } from './login.component';
+import {By} from "@angular/platform-browser";
 
-import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -8,6 +12,11 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        ReactiveFormsModule,
+        FormsModule,      
+      ],
       declarations: [ LoginComponent ]
     })
     .compileComponents();
@@ -22,4 +31,12 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display warning message when empty username and password provided', fakeAsync(() => {
+    let button =fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    tick();
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelectorAll('#warning')).toBeTruthy();
+  }));
 });

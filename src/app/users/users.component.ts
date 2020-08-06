@@ -51,12 +51,12 @@ export class UsersComponent implements OnInit {
 					if (response.status === "Create user successfully"){
 						this.success = true;
 					}
-					return (response.status);
+					return response.status;
 				} catch (e) {
+					console.log('error ' + e)
 					return 'error: ' + e;
 				}
-			}
-			
+			}			
 		})();
 	}
 

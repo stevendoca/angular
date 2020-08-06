@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <div class="text-center p-4">
         <h4>Welcome to</h4>
         <h1><strong>StevenBank</strong></h1>
@@ -22,7 +22,16 @@
                 <button type="submit" class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0 " (click)="login()">Log in</button>
                 <p>Not a member ? <a href="/create-user">Register</a></p>
             </form>
-        <p>Response: {{ msg | async }}</p>
+        <ng-template [ngIf]= isWarningMsg>
+            <div class="alert alert-danger">
+              <p> <strong>Warning!</strong>{{msgWarning}}.</p> 
+              </div>
+        </ng-template>
+        <ng-template [ngIf]= isBackendWarning id="warning">
+            <div class="alert alert-danger">
+              <p> <strong>Warning!</strong>{{msgWarning}}.</p> 
+              </div>
+        </ng-template>
         </div>
     </div>   
 </div>

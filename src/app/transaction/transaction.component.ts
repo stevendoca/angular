@@ -45,7 +45,6 @@ export class TransactionComponent implements OnInit {
               + encodeURIComponent(event.target.value)
               
             const response = await apiCall(call);
-            // return (response.status);
           } catch (e) {
             console.log( 'error: ' + e);
           }

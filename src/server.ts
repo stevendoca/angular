@@ -119,7 +119,7 @@ app.get('/add-transaction', async (req, res) => {
 			}
 		});
 	} catch (e) {
-		res.send({ status: 'fail in serve' });
+		res.send({ status: 'fail in server', error: e });
 	}
 });
 

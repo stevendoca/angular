@@ -25,7 +25,7 @@
 				</div>
 				<ng-template [ngIf]= noPassword>
 					<div>
-						<p class="text-danger">Must provide password</p>
+						<p class="text-danger" id="emptyPassword">Must provide password</p>
 					</div>
 				</ng-template>
 				<div class="form-group w-75 mx-auto">
@@ -44,12 +44,12 @@
 					<p class="text-danger">Password is not match, please enter again passord</p>
 				</div>
 			</ng-template>
-			<ng-template [ngIf]= success>
-				<div class="text-center bg-success">
-					<p>{{msg | async}}</p>
-				</div>
-			</ng-template>
 			
+				<div class="text-center bg-primary" id="success">
+					<p >{{msg | async}}</p>
+				</div>
+				
+				
 		</div>
 	</div>
 

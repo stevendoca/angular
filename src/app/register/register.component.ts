@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TransactionComponent } from '../transaction/transaction.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Transaction } from '../transaction/transaction.component';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 import * as bent from 'bent';
 import { restApiPort } from '../../config';
 import { async } from '@angular/core/testing';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 const apiCall = bent('http://localhost:' + restApiPort + '/', 'GET', 'json', 200);
 
 
 export class Register {
-  closeResult = '';
   transactions: Array<Transaction> = [];
   totalCredit:number = 0;
   constructor () {};
@@ -26,30 +26,21 @@ export class Register {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  date = new FormControl('');
+	description = new FormControl('');
+  account = new FormControl('');
+  amount = new FormControl('');
   newDate:Date;
   newDescription:string;
   newAccount:string;
   newCredit:number;
   msg: Promise<string>;
-  closeResult = '';
-  constructor(private cookieService: CookieService,private modalService: NgbModal){};
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
+  
+  constructor(private cookieService: CookieService, private router: Router){
+  };
+  
+ 
+ 
   updateDate(event: Event):void{
     this.newDate = new Date((<HTMLInputElement>event.target).value);
   }
@@ -71,20 +62,31 @@ export class RegisterComponent implements OnInit {
   addServer(): void {
     this.msg = (async () => {
       if (this.cookieService.check('authtoken')){
-        try {
-					const call = 'add-transaction?date='
-						+ this.newDate + '&description='
-            + encodeURIComponent(this.newDescription) + '&account='
-            + encodeURIComponent(this.newAccount) + '&credit='
-            + encodeURIComponent(this.newCredit) + '&token='
-            + encodeURIComponent(this.cookieService.get('authtoken'))
-            
-					const response = await apiCall(call);
-					return (response.status);
-				} catch (e) {
-					return 'error: ' + e;
-				}
-      }							
+        if (this.newDate && this.newDescription && this.newAccount && this.newAccount){
+          try {
+            const call = 'add-transaction?date='
+              + this.newDate + '&description='
+              + encodeURIComponent(this.newDescription) + '&account='
+              + encodeURIComponent(this.newAccount) + '&credit='
+              + encodeURIComponent(this.newCredit) + '&token='
+              + encodeURIComponent(this.cookieService.get('authtoken'))
+              
+            const response = await apiCall(call);
+            this.date.setValue('');
+            this.description.setValue('');
+            this.account.setValue('');
+            this.amount.setValue('');
+            return (response.status);
+          } catch (e) {
+            return 'error: ' + e;
+          }
+        }else{
+          return 'Please provide all information'
+        }
+        
+      }	else{
+        this.router.navigate(['auth-error'])
+      }						
 		})();
   }
   ngOnInit(): void {

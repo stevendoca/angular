@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ts-node src/server.ts",
     "build": "ng build",
-    "test": "ng test",
+    "test": "./node_modules/.bin/jasmine-node spec",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -25,6 +25,8 @@
     "argon2": "^0.26.2",
     "bent": "^7.3.7",
     "bootstrap": "^4.5.0",
+    "jasmine": "^3.6.1",
+    "jasmine-node": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.25",
     "ngx-cookie-service": "^3.1.3",

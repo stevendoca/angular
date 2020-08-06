@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-12">
             <h1 class="text-center"><strong>Adding transaction</strong></h1>
+            <form>
             <table class= "table table-striped">
                 <thead>
                     <tr>
@@ -11,52 +12,38 @@
                         <th>Amount</th>
                     </tr>
                 </thead>
-                <tbody>
-                    
-                    
+                <tbody>                                      
                     <tr>
                         <td>
-                            <input type="date" class="form-control" (input)="updateDate($event)" placeholder = "new Date()">
+                        <div class="form-group">
+                            <input type="date" class="form-control" [formControl]="date" (input)="updateDate($event)" placeholder = "new Date()">
+                        </div>
                         </td>
                         <td>
-                            <input type="text" class="form-control" (input)="updateDescription($event)">
+                            <div class="form-group">
+                                <input type="text" class="form-control" [formControl]="description" (input)="updateDescription($event)">
+                            </div>
                         </td>
                         <td>
-                            <input type="text" class="form-control" (input)="updateAccount($event)">
+                            <div class="form-group">
+                                <input type="text" class="form-control" [formControl]="account" (input)="updateAccount($event)">
+                            </div>
                         </td>
                         <td>
-                            <input type="number" class="form-control" (input)="updateCredit($event)">
-                        </td>
+                            <div class="form-group">
+                                <input type="number" class="form-control" [formControl]="amount" (input)="updateCredit($event)">
 
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
             <button type="submit" class="btn btn-outline-danger btn-rounded btn-block my-4 waves-effect z-depth-0 w-25 mx-auto " (click)="addServer()">Add</button>
-            <ng-template #content let-modal>
-                <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Transaction confirmation</h4>
-                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                      <p><strong>Date: </strong>{{newDate}}</p>
-                      <p><strong>Description: </strong>{{newDescription}}</p>
-                      <p><strong>Account: </strong>{{newAccount}}</p>
-                      <p><strong>Amount: </strong>{{newCredit}}</p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-dark" (click)="modal.close(); addServer()">Save</button>
-                </div>
-              </ng-template>
-                                          
-              <pre>{{ closeResult }}</pre>
-  
-            <p>Response: {{ msg | async }}</p>
-        </div>
 
+        </form>
+            <div class="text-center bg-primary" id="info">
+                <p >{{msg | async}}</p>
+            </div>
     </div>
 </div>
 

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public isCollapsed = false;
   constructor(private cookieService: CookieService, private router: Router) { }
   logOut(): void{
     this.cookieService.delete('authtoken')
