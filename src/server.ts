@@ -115,7 +115,7 @@ app.get('/add-transaction', async (req, res) => {
 			if (err) {
 				res.send({ status: 'fail in saving', reason: err });
 			} else {
-				res.send({ status: 'OK' });
+				res.send({ status: 'Transaction was added' });
 			}
 		});
 	} catch (e) {
@@ -129,12 +129,10 @@ app.get('/get-transactions', async (req, res) => {
 		const user = await jwt.verify((req.query as any).token, jwtSecret);
 		if (user){
 			const transactions = await Transaction.find({user:user.user});
-			console.log(transactions[0].credit)
 			let debit = 0;
 			for(let i = 0; i < transactions.length; i++){
 				debit+= transactions[i].credit;
 			}
-			console.log(debit)
 			return res.send({status:'OK', transactions:transactions, debit: debit});
 		}else{
 			return res.send({status:'no such user'})
@@ -148,11 +146,7 @@ app.get('/delete-transaction', async (req, res) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	try{
 		const user= await Transaction.findByIdAndRemove((req.query as any).id)
-		if (!user){
-			console.log('no user')
-		}else{
-			console.log(user)
-		}
+
 	}catch(e){
 		console.log('error ' + e)
 	}

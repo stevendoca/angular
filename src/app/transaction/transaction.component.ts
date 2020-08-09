@@ -35,15 +35,14 @@ export class Transaction {
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
-    @Input() transaction:Transaction = new Transaction('productName','category',4);
+    @Input() transaction:Transaction;
     msg: Promise<any>;
-
+    constructor(private router: Router) { }
     deleteTrans(event):void{
-      this.msg = (async () => {
+      (async () => {
           try {
             const call = 'delete-transaction?id='
               + encodeURIComponent(event.target.value)
-              
             const response = await apiCall(call);
           } catch (e) {
             console.log( 'error: ' + e);

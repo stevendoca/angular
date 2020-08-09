@@ -3,12 +3,13 @@
 
     <div>
         <h5><strong>Summary</strong></h5>
-        <p>Total transactions: <strong>{{this.dash.transactions.length}}</strong></p>
-        <p>Current Balance: <strong>${{this.dash.credit}}</strong></p>
+        <p>Total transactions: <strong>{{this.transactions.length}}</strong></p>
+        <p>Current Balance: <strong>{{this.credit | currency:'CA'}}</strong></p>
     </div>
     <div>
         <h5 (click)="changeShowList()"><strong>Click to show detail</strong></h5>
         <div class="col-12" >
+            <p><strong>refresh to see update if you delete transaction</strong></p>
             <table class= "table table-striped" *ngIf="showList">
                 <thead>
                     <tr>
@@ -20,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="transaction" *ngFor="let tr of transactionList | async " app-transaction [transaction]="tr">
+                    <tr class="transaction" *ngFor="let tr of transactionList | async " app-transaction [transaction]="tr">                  
                     </tr>
                 </tbody>
             </table>

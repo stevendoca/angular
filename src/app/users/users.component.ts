@@ -31,18 +31,19 @@ export class UsersComponent implements OnInit {
 
 			if (this.password.value == ''){
 				this.noPassword = true;
+
 			}
 
 			if (this.confirmPassword.value == ''){
 				this.noConfirmPassword = true;
+
 			}
 
 			if (this.password.value !== this.confirmPassword.value){
 				this.passwordNotMatch = true;
 
 			}
-			if ( !this.noUserName && !this.noPassword && !this.noConfirmPassword && (this.password.value === this.confirmPassword.value)){
-				console.log('go through')
+			if ( this.username.value && this.password.value && this.confirmPassword.value && (this.password.value === this.confirmPassword.value)){
 				try {
 					const call = 'create-user?username='
 						+ encodeURIComponent(this.username.value) + '&password='
@@ -56,6 +57,8 @@ export class UsersComponent implements OnInit {
 					console.log('error ' + e)
 					return 'error: ' + e;
 				}
+			}else{
+				console.log('something wrong')
 			}			
 		})();
 	}

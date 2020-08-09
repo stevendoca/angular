@@ -9,8 +9,8 @@ import { async } from '@angular/core/testing';
 const apiCall = bent('http://localhost:' + restApiPort + '/', 'GET', 'json', 200);
 
 class DashBoard {
-  transactions:any = [];
-  credit:any;
+
+
 
 }
 
@@ -21,7 +21,8 @@ class DashBoard {
 })
 export class DashBoardComponent implements OnInit {
 dash = new DashBoard();
-
+transactions:any = [];
+credit:any;
 showList = false;
 transactionList: Promise<any>;
 changeShowList():void{
@@ -34,8 +35,9 @@ changeShowList():void{
 					const response = await apiCall('get-transactions?token='
 						+ encodeURIComponent(this.cookieService.get('authtoken')));
 					if (response.status === 'OK') {
-						this.dash.credit = response.debit;
-				  	return	this.dash.transactions = response.transactions;
+						this.credit = response.debit;
+						console.log(this.transactions)
+					  return	this.transactions = response.transactions;
 					} else {
 						return 'failure';
 					}

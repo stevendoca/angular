@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
   addServer(): void {
     this.msg = (async () => {
       if (this.cookieService.check('authtoken')){
-        if (this.newDate && this.newDescription && this.newAccount && this.newAccount){
+        if (this.newDate && this.newDescription && this.newAccount && this.newCredit){
           try {
             const call = 'add-transaction?date='
               + this.newDate + '&description='

@@ -39,4 +39,16 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelectorAll('#warning')).toBeTruthy();
   }));
+  it('should login successfully', fakeAsync(() => {
+    let native = fixture.debugElement.nativeElement;
+    const name:HTMLInputElement = native.querySelector('#userNameInput');
+    const password:HTMLInputElement = native.querySelector('#passwordInput');
+    name.value = 'steven';
+    password.value = '1234';
+    let button =native.querySelector('button');
+    button.click();
+    tick();
+    let paragraph = native.querySelector('div')
+    expect(paragraph.length).toBe(2);
+  }));
 });
